@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dos Quinielas Deportivas Aleatorias</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+</head>
+<body>
+  <h1>Quinielas Deportivas Aleatorias</h1>
+  
+  <div class="quiniela" id="resultados">
+    <h2>Premier League</h2>
+  </div>
+
+  <button id="generarButton">Generar Quiniela Premier League</button>
+
+  <div class="quiniela" id="resultados2">
+    <h2>Liga de El Salvador</h2>
+  </div>
+ 
+  <button id="generarButton2">Generar Quiniela Liga de El Salvador</button>
+  <button id="cerrarButton">Cerrar Quinielas</button>
+  
+  <script src="js/quiniela1.js"></script>
+  <script src="js/quiniela2.js"></script>
+  <script>
+    const cerrarButton = document.getElementById("cerrarButton");
+cerrarButton.addEventListener("click", function() {
+  const resultados1 = document.getElementById("resultados");
+  resultados1.innerHTML = "<h2>Premier League";
+  const resultados2 = document.getElementById("resultados2");
+  resultados2.innerHTML = "<h2>Liga El Salvador";
+
+    const generarButton1 = document.getElementById("generarButton");
+  const generarButton2 = document.getElementById("generarButton2");
+  generarButton1.textContent = "Generar Quiniela Premier League";
+  generarButton2.textContent = "Generar Quiniela Liga de El Salvador";
+});
+  
+  </script>
+</body>
+</html>
