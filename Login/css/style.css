@@ -1,6 +1,31 @@
 body {
   font-family: Arial, sans-serif;
  
+
+  background: linear-gradient(45deg,#f85f5f,#716969,#00C1FF );
+  background-size:400% 400% ;
+  animation: fanimado 10s ease infinite;
+}
+
+@keyframes fanimado {
+  0%{
+background-position: 0% 50%;
+  }
+  50%{
+      background-position: 100% 50%;
+  }
+  100%{
+      background-position: 0% 50%;
+  }
+ }
+
+ /*agregue un header*/
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 16px;
+  display: flex;
+  width: px;
 }
 
 .quiniela {
