@@ -21,9 +21,7 @@ background-position: 0% 50%;
 
 /*agregue un header*/
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 16px;
+  padding: 10px;
   display: flex;
   width: px;
 }
@@ -134,13 +132,13 @@ aside {
 }
 header {
   background-color: #333;
-  color: #fff;
-  padding: 20px;
+ 
+  padding: 0%;
   text-align: center;
   width: 100%;
 }
 nav {
-  background-color: #f4f4f4;
+  
   padding: 10px;
   text-align: center;
   width: 20%;
@@ -168,4 +166,38 @@ footer {
   width: 90%;
   height: 90%;
   padding: 10%;
+}
+
+  
+  #hea{
+    background-color: #333 !important;
+   
+    color: #f4f4f4 !important;
+  }
+  #hea .contain {
+color: #f4f4f4 !important;
+}
+.navbar {
+  --bs-navbar-padding-x: 0;
+  --bs-navbar-padding-y: 0.5rem;
+  --bs-navbar-color: #fff !important; 
+  --bs-navbar-hover-color: #fff !important;
+  --bs-navbar-disabled-color: #fff !important;
+ --bs-navbar-active-color: #fff !important;
+  
+  --bs-navbar-brand-font-size: 1.25rem;
+  --bs-navbar-brand-color:  #fff !important;
+  --bs-navbar-brand-hover-color: #fff !important;
+  --bs-navbar-nav-link-padding-x: 0.5rem;
+  --bs-navbar-toggler-padding-y: 0.25rem;
+  --bs-navbar-toggler-padding-x: 0.75rem;
+  --bs-navbar-toggler-font-size: 1.25rem;
+  --bs-navbar-toggler-icon-bg: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e);
+  --bs-navbar-toggler-border-color: rgba(var(--bs-emphasis-color-rgb), 0.15);
+
+}
+#udbf{
+  border-radius: 50px;
+  position: relative;
+  left: 30px;
 }
