@@ -62,7 +62,11 @@ Clona el repositorio en tu máquina local:
 
 
 ------------
+## pdf
 
+[proyecto catedra..pdf](https://github.com/AdrielMontano/Proyecto-catedra-DAW/files/14631108/proyecto.catedra.pdf)
+
+------------
 **Créditos**
 
 El actual proyecto es desarrollado por:
