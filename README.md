@@ -75,7 +75,7 @@ El actual proyecto es desarrollado por:
 
 4.Michael Brian Chicas Hernandez
 
-5.Xenia Carolina Sánchez Mancia
+
 
 
 
