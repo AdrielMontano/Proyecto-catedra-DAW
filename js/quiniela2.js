@@ -1,4 +1,25 @@
-/* Definición de los equipos disponibles de la Liga de El Salvador*/
+// Función para limpiar el LocalStorage al cargar la página
+function limpiarLocalStorageAlCargar() {
+  localStorage.clear();
+}
+
+// Llamar a la función al cargar la página
+limpiarLocalStorageAlCargar();
+
+// Obtener el botón de generar para la Liga de El Salvador
+const generarButton2 = document.getElementById("generarButton2");
+
+generarButton2.addEventListener("click", function () {
+  // Ocultar las apuestas mostradas, si las hay
+  ocultarApuestas2();
+
+  // Mostrar la tabla de generación de quinielas para la Liga de El Salvador
+  document.getElementById("tablaQuiniela2").style.display = "block";
+
+  // Generar la quiniela para la Liga de El Salvador
+  generarQuinielaElSalvador();
+});
+
 const equiposElSalvador = [
   "Alianza FC",
   "FAS",
@@ -12,195 +33,143 @@ const equiposElSalvador = [
   "Jocoro FC",
   "Atlético Marte",
   "El Vencedor",
-  "Audaz",
-  "Topiltzín",
-  "Independiente FC",
-  "Turín FESA",
-  "Platense",
-
-  "CD Sonsonate",
-  "CD Dragón",
-  "AD Chalatenango",
-  "CD Vista Hermosa",
-  "CD Marte Soyapango",
-  "CD UES",
 ];
 
-// Definición de los posibles resultados hah
-const resultadosPosibles2 = ["1", "X", "2"];
-
-// Variable para rastrear si se ha generado la quiniela
-let quinielaGeneradaElSalvador = false;
-
-// Función para generar una quiniela aleatoria de la Liga de El Salvador
+// Función para generar la quiniela para la Liga de El Salvador
+// Función para generar la quiniela para la Liga de El Salvador
 function generarQuinielaElSalvador() {
-  const equiposDisponibles = equiposElSalvador.slice();
-  const quinielaElSalvador = [];
+  const quinielaBody2 = document.getElementById("quinielaBody2");
+  quinielaBody2.innerHTML = "";
 
-  // Generar 11 partidos
-  for (let i = 1; i <= 11; i++) {
-    let local, visitante, resultado;
+  equiposElSalvador.forEach((equipo, index) => {
+    if (index < equiposElSalvador.length - 1) {
+      const newRow = document.createElement("tr");
 
-    // Si quedan al menos dos equipos disponibles, seleccionar equipos aleatoriamente
-    if (equiposDisponibles.length >= 2) {
-      const localIndex = Math.floor(Math.random() * equiposDisponibles.length);
-      local = equiposDisponibles[localIndex];
-      equiposDisponibles.splice(localIndex, 1);
+      // Crear celda para la imagen y nombre del equipo local
+      const localCell = document.createElement("td");
+      const localImg = document.createElement("img");
+      localImg.src = `../img/${equipo.toLowerCase().replace(/\s/g, '')}.png`;
+      localImg.alt = `Escudo ${equipo}`;
+      localImg.style.height = "30px";
+      localImg.style.width = "30px"; // Hacer la imagen cuadrada
+      localCell.appendChild(localImg);
+      localCell.appendChild(document.createTextNode(equipo)); // Agregar el nombre del equipo
+      newRow.appendChild(localCell);
 
-      const visitanteIndex = Math.floor(Math.random() * equiposDisponibles.length);
-      visitante = equiposDisponibles[visitanteIndex];
-      equiposDisponibles.splice(visitanteIndex, 1);
+      // Crear celda para el resultado
+      const resultadoCell = document.createElement("td");
+      const resultadoInput = document.createElement("input");
+      resultadoInput.type = "text";
+      resultadoInput.classList.add("resultadoInput2");
+      resultadoCell.appendChild(resultadoInput);
+      newRow.appendChild(resultadoCell);
 
-      resultado = resultadosPosibles2[Math.floor(Math.random() * resultadosPosibles2.length)];
-    } else {
-      // Si no quedan suficientes equipos, rellenar con equipos aleatorios
-      local = equiposElSalvador[Math.floor(Math.random() * equiposElSalvador.length)];
-      visitante = equiposElSalvador[Math.floor(Math.random() * equiposElSalvador.length)];
-      resultado = resultadosPosibles2[Math.floor(Math.random() * resultadosPosibles2.length)];
+      // Crear celda para la imagen y nombre del equipo visitante
+      const visitanteCell = document.createElement("td");
+      const visitanteImg = document.createElement("img");
+      visitanteImg.src = `../img/${equiposElSalvador[index + 1].toLowerCase().replace(/\s/g, '')}.png`;
+      visitanteImg.alt = `Escudo ${equiposElSalvador[index + 1]}`;
+      visitanteImg.style.height = "30px";
+      visitanteImg.style.width = "30px"; // Hacer la imagen cuadrada
+      visitanteCell.appendChild(visitanteImg);
+      visitanteCell.appendChild(document.createTextNode(equiposElSalvador[index + 1])); // Agregar el nombre del equipo
+      newRow.appendChild(visitanteCell);
+
+      quinielaBody2.appendChild(newRow);
     }
-
-    quinielaElSalvador.push({ local: local, visitante: visitante, resultado: resultado });
-  }
-
-  quinielaGeneradaElSalvador = true;
-
-  return quinielaElSalvador;
+  });
 }
 
-// Función para mostrar la quiniela de la Liga de El Salvador en la página
-function mostrarQuinielaElSalvador() {
-  const resultadosDiv = document.getElementById("resultados2");
-  const quinielaElSalvador = generarQuinielaElSalvador();
 
-  resultadosDiv.innerHTML = "";
 
-  const divContenedor = document.createElement("div");
+// Función para manejar el evento de apostar para la Liga de El Salvador
+function apostar2() {
+  let apuestaNumber = parseInt(localStorage.getItem("apuestaNumber2") || "0") + 1;
+  const resultadoInputs = document.querySelectorAll(".resultadoInput2");
+  const quinielaData = [];
 
-  // Crear la cabecera de la quiniela
-  const divCabeceraPartidos = document.createElement("div");
-  divCabeceraPartidos.classList.add("cabecera");
+  resultadoInputs.forEach(input => {
+    const resultado = input.value;
+    const localImgAlt = input.parentNode.parentNode.children[0].querySelector('img').alt.replace('Escudo ', ''); // Obtener el nombre del equipo local
+    const visitanteImgAlt = input.parentNode.parentNode.children[2].querySelector('img').alt.replace('Escudo ', ''); // Obtener el nombre del equipo visitante
 
-  // Crear elementos span para la cabecera
-  const spanCabeceraPartidos = document.createElement("span");
-  spanCabeceraPartidos.classList.add("cabecera-texto");
-  spanCabeceraPartidos.textContent = "Partidos     ";
-
-  const spanCabeceraSeparador = document.createElement("span");
-  spanCabeceraSeparador.classList.add("cabecera-separador");
-  spanCabeceraSeparador.textContent = " - ";
-
-  const spanCabeceraResultados = document.createElement("span");
-  spanCabeceraResultados.classList.add("cabecera-texto");
-  spanCabeceraResultados.textContent = "Resultados";
-
-  // Agregar los elementos span a la cabecera
-  divCabeceraPartidos.appendChild(spanCabeceraPartidos);
-  divCabeceraPartidos.appendChild(spanCabeceraSeparador);
-  divCabeceraPartidos.appendChild(spanCabeceraResultados);
-
-  // Agregar la cabecera al contenedor
-  divContenedor.appendChild(divCabeceraPartidos);
-
-  // Iterar a través de los partidos de la quiniela de la Liga de El Salvador
-  quinielaElSalvador.forEach((partido, index) => {
-    const divPartido = document.createElement("div");
-    divPartido.classList.add("partido");
-
-    const spanPartido = document.createElement("span");
-    spanPartido.textContent = `${index + 1}. ${partido.local} vs ${partido.visitante}`;
-    divPartido.appendChild(spanPartido);
-
-    // Agregar el pleno al 15 si corresponde
-    if (index === 14) {
-      const divPleno = document.createElement("div");
-      divPleno.classList.add("pleno");
-      divPleno.textContent = "Pleno al 15";
-      divContenedor.appendChild(divPleno);
-    }
-
-    // Agregar una línea separadora entre los partidos
-    if (index < 14) {
-      divContenedor.appendChild(document.createElement("hr"));
-    }
-
-    // Crear el contenedor para el resultado
-    const divResultado = document.createElement("div");
-    divResultado.classList.add("resultado-contenedor");
-
-    // Crear el elemento span para mostrar el resultado
-    const spanResultado = document.createElement("span");
-    spanResultado.classList.add("resultado");
-    spanResultado.textContent = partido.resultado;
-
-    // Agregar el resultado al contenedor
-    divResultado.appendChild(spanResultado);
-
-    // Agregar el separador entre el partido y el resultado
-    divPartido.appendChild(document.createTextNode("     -     "));
-    divPartido.appendChild(divResultado);
-    divContenedor.appendChild(divPartido);
+    quinielaData.push({ local: localImgAlt, visitante: visitanteImgAlt, resultado });
   });
 
-  // Agregar el contenedor de la quiniela al elemento resultadosDiv
-  resultadosDiv.appendChild(divContenedor);
+  localStorage.setItem(`apuesta${apuestaNumber}_2`, JSON.stringify(quinielaData));
+  localStorage.setItem("apuestaNumber2", apuestaNumber.toString());
 
-  // Actualizar el texto del botón
-  const generarButton = document.getElementById("generarButton2");
-  generarButton.textContent = "Generar de nuevo";
+  alert(`¡Quiniela apuesta número ${apuestaNumber} para la Liga de El Salvador guardada exitosamente!`);
+
+  resultadoInputs.forEach(input => {
+    input.value = "";
+  });
+
+  console.log(quinielaData);
 }
 
-// Obtener el botón y agregar un evento de clic para la quiniela de la Liga de El Salvador
-const generarButton2 = document.getElementById("generarButton2");
-generarButton2.addEventListener("click", function () {
-  if (quinielaGeneradaElSalvador) {
-    mostrarQuinielaElSalvador();
-  } else {
-    generarQuinielaElSalvador();
-    mostrarQuinielaElSalvador();
+
+const apostarButton2 = document.getElementById("apostarButton2");
+apostarButton2.addEventListener("click", apostar2);
+
+function mostrarApuestas2() {
+  document.getElementById("tablaQuiniela2").style.display = "none";
+  const apuestasContainer = document.getElementById("apuestasContainer2");
+  apuestasContainer.innerHTML = "";
+  const apuestaNumber = parseInt(localStorage.getItem("apuestaNumber2") || "0");
+
+  for (let i = 1; i <= apuestaNumber; i++) {
+    const apuestaData = JSON.parse(localStorage.getItem(`apuesta${i}_2`)) || [];
+    const table = document.createElement("table");
+    table.classList.add("table", "table-bordered", "table-striped", "mt-3");
+
+    const thead = document.createElement("thead");
+    thead.innerHTML = `
+      <tr>
+        <th scope="col">Equipo Local</th>
+        <th scope="col">Resultado</th>
+        <th scope="col">Equipo Visitante</th>
+      </tr>
+    `;
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    apuestaData.forEach(item => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>
+          <img src="../img/${item.local.toLowerCase().replace(/\s/g, '')}.png" alt="${item.local}" style="height: 30px; width: 30px;">
+          ${item.local}
+        </td>
+        <td>${item.resultado}</td>
+        <td>
+          <img src="../img/${item.visitante.toLowerCase().replace(/\s/g, '')}.png" alt="${item.visitante}" style="height: 30px; width: 30px;">
+          ${item.visitante}
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+
+    apuestasContainer.appendChild(table);
   }
+}
+
+const mostrarApuestasButton2 = document.getElementById("mostrarApuestasButton2");
+mostrarApuestasButton2.addEventListener("click", mostrarApuestas2);
+
+
+function ocultarApuestas2() {
+  const tablaQuiniela2 = document.getElementById("tablaQuiniela2");
+  if (tablaQuiniela2.style.display === "none") {
+    tablaQuiniela2.style.display = "block";
+  }
+}
+
+const cerrarButton = document.getElementById("cerrarButton");
+cerrarButton.addEventListener("click", function () {
+  document.getElementById("tablaQuiniela").style.display = "none";
+  document.getElementById("apuestasContainer").innerHTML = "";
+  document.getElementById("tablaQuiniela2").style.display = "none";
+  document.getElementById("apuestas")
 });
-
-// Función para mostrar la quiniela de la Liga de El Salvador en formato de tabla
-function mostrarQuinielaElSalvador() {
-  const resultadosDiv = document.getElementById("resultados2");
-  const quinielaElSalvador = generarQuinielaElSalvador();
-
-  resultadosDiv.innerHTML = "";
-
-  // Crear la tabla para la quiniela
-  const tabla = document.createElement("table");
-  tabla.classList.add("tabla-quiniela");
-
-  // Crear la cabecera de la tabla
-  const cabecera = document.createElement("thead");
-  const cabeceraRow = document.createElement("tr");
-  const cabeceraPartidos = document.createElement("th");
-  cabeceraPartidos.textContent = "Partidos";
-  const cabeceraResultados = document.createElement("th");
-  cabeceraResultados.textContent = "Resultados";
-  cabeceraRow.appendChild(cabeceraPartidos);
-  cabeceraRow.appendChild(cabeceraResultados);
-  cabecera.appendChild(cabeceraRow);
-  tabla.appendChild(cabecera);
-
-  // Agregar los partidos y resultados a la tabla
-  const cuerpo = document.createElement("tbody");
-  quinielaElSalvador.forEach((partido, index) => {
-    const fila = document.createElement("tr");
-    const columnaPartido = document.createElement("td");
-    columnaPartido.textContent = `${index + 1}. ${partido.local} vs ${partido.visitante}`;
-    const columnaResultado = document.createElement("td");
-    columnaResultado.textContent = partido.resultado;
-    fila.appendChild(columnaPartido);
-    fila.appendChild(columnaResultado);
-    cuerpo.appendChild(fila);
-  });
-  tabla.appendChild(cuerpo);
-
-  // Agregar la tabla al div de resultados
-  resultadosDiv.appendChild(tabla);
-
-  // Actualizar el texto del botón
-  const generarButton = document.getElementById("generarButton2");
-  generarButton.textContent = "Generar de nuevo";
-}
