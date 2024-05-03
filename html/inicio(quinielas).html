@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title> UDBNELAS</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <link rel="icon" href="../img/udbf-removebg-preview.png">
+
+  <link rel="stylesheet" type="text/css" href="../css/inicio.css" media="screen" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Sitio Web</title>
+
+
+</head>
+
+<body>
+
+  <header>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" id="hea">
+      <div class="container-fluid" id="contain">
+        <a class="navbar-brand" href="#"><b>UDBNELAS<img src="../img/udbf.jpeg" alt="" id="udbf"></b></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="home.html"><b>Home</b> </a>
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="nav-item">
+              <a class="nav-link" href="inicio(quinielas).html"><b>Quinielas</b></a>
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="nav-item">
+              <a class="nav-link" href="desarolladores.html"><b>Desarrolladores</b></a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <section>
+    <center>
+      <br>
+      <div class="quiniela" id="resultados" class="border border-success p-2 mb-2 border-opacity-50">
+        <h2>Premier League</h2>
+        <img class="imagen" src="../img/premier league.png" alt="">
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <br>
+        <button id="generarButton" class="btn btn-primary">Generar Premier League</button>
+        <button id="cerrarButton2" class="btn btn-danger">Cerrar Quinielas</button>
+        <br>
+      </div>
+
+      <div id="tablaQuiniela" style="display: none;">
+        <table id="tablaResultados" class="table">
+          <thead>
+            <tr>
+              <th>Equipo Local</th>
+              <th>Resultado</th>
+              <th>Equipo Visitante</th>
+            </tr>
+          </thead>
+          <tbody id="quinielaBody">
+            <!-- Las filas de la quiniela se generarán aquí -->
+          </tbody>
+        </table>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button id="apostarButton" class="btn btn-primary">Apostar</button>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto mt-3">
+          <button id="mostrarApuestasButton" class="btn btn-info">Mostrar Apuestas</button>
+          
+        </div>
+      </div>
+      <div id="apuestasContainer"></div>
+
+      <div class="quiniela" id="resultados2">
+        <h2>Liga El Salvador</h2>
+        <img class="imagen" src="../img/primera_divicion.png" alt="">
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <br>
+        <button id="generarButton2" class="btn btn-primary">Generar Liga de El Salvador</button>
+        <button id="cerrarButton" class="btn btn-danger">Cerrar Quinielas</button>
+        <br>
+      </div>
+
+      <div id="tablaQuiniela2" style="display: none;">
+        <table id="tablaResultados2" class="table">
+          <thead>
+            <tr>
+              <th>Equipo Local</th>
+              <th>Resultado</th>
+              <th>Equipo Visitante</th>
+            </tr>
+          </thead>
+          <tbody id="quinielaBody2">
+            <!-- Las filas de la quiniela se generarán aquí -->
+          </tbody>
+        </table>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button id="apostarButton2" class="btn btn-primary">Apostar</button>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto mt-3">
+          <button id="mostrarApuestasButton2" class="btn btn-info">Mostrar Apuestas</button>
+          
+        </div>
+      </div>
+      <div id="apuestasContainer2"></div>
+    </center>
+  </section>
+ 
+  <footer>
+    <p>Derechos de autor &copy; 2024 Sitio Web By UDB Students</p>
+  </footer>
+  <script src="../js/quiniela1.js"></script>
+  <script src="../js/quiniela2.js"></script>
+</body>
+
+</html>
