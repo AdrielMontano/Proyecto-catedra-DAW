@@ -20,6 +20,11 @@ const equipos = [
   "Bournemouth",
   "Fulham",
   "Southampton",
+
+
+  "Burnley",
+  "Watford",
+  "Norwich City",
 ];
   // Definición de los posibles resultados
   const resultadosPosibles = ["1", "X", "2"];
@@ -44,12 +49,18 @@ const equipos = [
       const resultado = resultadosPosibles[Math.floor(Math.random() * resultadosPosibles.length)];
   
       quiniela.push({ local: local, visitante: visitante, resultado: resultado });
+  
+      // Verificar si ya se generaron al menos 11 partidos y si quedan suficientes equipos para seleccionar
+      if (i >= 11 && equiposDisponibles.length < 2) {
+        break; // Si no quedan suficientes equipos disponibles, terminar la generación de la quiniela
+      }
     }
   
     quinielaGenerada = true;
   
     return quiniela;
   }
+  
   
   // Función para mostrar la quiniela en la página
   function mostrarQuiniela() {

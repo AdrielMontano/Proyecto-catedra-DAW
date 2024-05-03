@@ -1,4 +1,4 @@
-// Definición de los equipos disponibles de la Liga de El Salvador
+/* Definición de los equipos disponibles de la Liga de El Salvador*/
 const equiposElSalvador = [
   "Alianza FC",
   "FAS",
@@ -17,6 +17,13 @@ const equiposElSalvador = [
   "Independiente FC",
   "Turín FESA",
   "Platense",
+
+  "CD Sonsonate",
+  "CD Dragón",
+  "AD Chalatenango",
+  "CD Vista Hermosa",
+  "CD Marte Soyapango",
+  "CD UES",
 ];
 
 // Definición de los posibles resultados hah
@@ -30,16 +37,27 @@ function generarQuinielaElSalvador() {
   const equiposDisponibles = equiposElSalvador.slice();
   const quinielaElSalvador = [];
 
-  for (let i = 1; i <= 15; i++) {
-    const localIndex = Math.floor(Math.random() * equiposDisponibles.length);
-    const local = equiposDisponibles[localIndex];
-    equiposDisponibles.splice(localIndex, 1);
+  // Generar 11 partidos
+  for (let i = 1; i <= 11; i++) {
+    let local, visitante, resultado;
 
-    const visitanteIndex = Math.floor(Math.random() * equiposDisponibles.length);
-    const visitante = equiposDisponibles[visitanteIndex];
-    equiposDisponibles.splice(visitanteIndex, 1);
+    // Si quedan al menos dos equipos disponibles, seleccionar equipos aleatoriamente
+    if (equiposDisponibles.length >= 2) {
+      const localIndex = Math.floor(Math.random() * equiposDisponibles.length);
+      local = equiposDisponibles[localIndex];
+      equiposDisponibles.splice(localIndex, 1);
 
-    const resultado = resultadosPosibles[Math.floor(Math.random() * resultadosPosibles.length)];
+      const visitanteIndex = Math.floor(Math.random() * equiposDisponibles.length);
+      visitante = equiposDisponibles[visitanteIndex];
+      equiposDisponibles.splice(visitanteIndex, 1);
+
+      resultado = resultadosPosibles2[Math.floor(Math.random() * resultadosPosibles2.length)];
+    } else {
+      // Si no quedan suficientes equipos, rellenar con equipos aleatorios
+      local = equiposElSalvador[Math.floor(Math.random() * equiposElSalvador.length)];
+      visitante = equiposElSalvador[Math.floor(Math.random() * equiposElSalvador.length)];
+      resultado = resultadosPosibles2[Math.floor(Math.random() * resultadosPosibles2.length)];
+    }
 
     quinielaElSalvador.push({ local: local, visitante: visitante, resultado: resultado });
   }
