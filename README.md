@@ -68,11 +68,13 @@ Clona el repositorio en tu máquina local:
 
 Manual de Usuario
 
-[Uploading Manual De Usuario.pdf…]()
+[Manual De Usuario.pdf](https://github.com/AdrielMontano/Proyecto-catedra-DAW/files/15212664/Manual.De.Usuario.pdf)
+
 
 Manual Tecnico
 
-[Uploading manual Tecnico.pdf…]()
+[manual Tecnico.pdf](https://github.com/AdrielMontano/Proyecto-catedra-DAW/files/15212673/manual.Tecnico.pdf)
+
 
 fase 1
 
