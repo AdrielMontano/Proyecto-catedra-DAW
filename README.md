@@ -36,7 +36,7 @@ El proceso de generación de quinielas para la Liga de El Salvador es similar al
 - CSS
 - JavaScript
 - Bootstrap
-
+- LocalStorage
 ------------
 ###  Cómo Utilizar
  
@@ -66,7 +66,29 @@ Clona el repositorio en tu máquina local:
 ------------
 ## pdf
 
+Manual de Usuario
+
+[Uploading Manual De Usuario.pdf…]()
+
+Manual Tecnico
+
+[Uploading manual Tecnico.pdf…]()
+
+fase 1
+
 [proyecto catedra..pdf](https://github.com/AdrielMontano/Proyecto-catedra-DAW/files/14631108/proyecto.catedra.pdf)
+------------
+#links
+
+Notion
+
+https://www.notion.so/7b0a0827183349f28f7ade77de401d27?v=c8212cd6e14842e5883413
+8eb83c02e4&pvs=4
+
+Mock Ups
+
+https://www.figma.com/file/Fc86yqgg76dH5Sy9BIsC5c/Login?type=design&t=wH3az0w
+VF4hGs6kk-6
 
 ------------
 **Créditos**
