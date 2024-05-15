@@ -57,15 +57,18 @@ function generarQuiniela() {
     newRow.appendChild(localCell);
 
     // Crear celda para el resultado
+    
     const resultadoCell = document.createElement("td");
     const resultadoInput = document.createElement("input");
     resultadoInput.type = "text";
     resultadoInput.classList.add("resultadoInput");
     resultadoCell.appendChild(resultadoInput);
+    
     resultadoInput.addEventListener("input", function(event) {
-       alert("¡Solo se permiten los valores 1, X, y 2 en este campo!");
+  
       const valor = event.target.value.toUpperCase(); // Convertir el valor ingresado a mayúsculas
       if (valor !== "1" && valor !== "X" && valor !== "2") {
+        alert("¡Solo se permiten los valores 1, X, y 2 en este campo!");
         event.target.value = ""; // Limpiar el campo si el valor no es válido
       }
     });
@@ -220,3 +223,4 @@ cerrarButton2.addEventListener("click", function () {
   document.getElementById("apuestasContainer2").innerHTML = "";
 
 });
+
