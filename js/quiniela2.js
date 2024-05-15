@@ -67,6 +67,7 @@ function generarQuiniela() {
       const valor = event.target.value.toUpperCase(); // Convertir el valor ingresado a mayúsculas
       if (valor !== "1" && valor !== "X" && valor !== "2") {
         event.target.value = ""; // Limpiar el campo si el valor no es válido
+            alert("¡Solo se permiten los valores 1, X, y 2 en este campo!");
       }
     });
 
