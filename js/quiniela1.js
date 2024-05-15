@@ -54,13 +54,6 @@ function generarQuiniela() {
     localContent.appendChild(localImg);
     localContent.appendChild(document.createTextNode(equipo)); // Agregar el nombre del equipo
     localCell.appendChild(localContent);
-     resultadoInput.addEventListener("input", function(event) {
-      const valor = event.target.value.toUpperCase(); // Convertir el valor ingresado a mayúsculas
-      if (valor !== "1" && valor !== "X" && valor !== "2") {
-        event.target.value = ""; // Limpiar el campo si el valor no es válido
-        alert("¡Solo se permiten los valores 1, X, y 2 en este campo!"); 
-      }
-    });
     newRow.appendChild(localCell);
 
     // Crear celda para el resultado
@@ -69,6 +62,14 @@ function generarQuiniela() {
     resultadoInput.type = "text";
     resultadoInput.classList.add("resultadoInput");
     resultadoCell.appendChild(resultadoInput);
+    resultadoInput.addEventListener("input", function(event) {
+      const valor = event.target.value.toUpperCase(); // Convertir el valor ingresado a mayúsculas
+      if (valor !== "1" && valor !== "X" && valor !== "2") {
+        event.target.value = ""; // Limpiar el campo si el valor no es válido
+      }
+    });
+
+
     newRow.appendChild(resultadoCell);
 
     // Crear celda para el escudo y nombre del equipo visitante
