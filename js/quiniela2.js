@@ -6,163 +6,131 @@ function limpiarLocalStorageAlCargar() {
 // Llamar a la función al cargar la página
 limpiarLocalStorageAlCargar();
 
-// Obtener el botón de generar
-const generarButton = document.getElementById("generarButton");
+// Obtener el botón de generar para la Liga de El Salvador
+const generarButton2 = document.getElementById("generarButton2");
 
-generarButton.addEventListener("click", function () {
+generarButton2.addEventListener("click", function () {
   // Ocultar las apuestas mostradas, si las hay
-  ocultarApuestas();
+  ocultarApuestas2();
 
-  // Mostrar la tabla de generación de quinielas
-  document.getElementById("tablaQuiniela").style.display = "block";
+  // Mostrar la tabla de generación de quinielas para la Liga de El Salvador
+  document.getElementById("tablaQuiniela2").style.display = "block";
 
-  // Generar la quiniela
-  generarQuiniela();
+  // Generar la quiniela para la Liga de El Salvador
+  generarQuinielaElSalvador();
 });
 
-const equipos = [
-  "Manchester City",
-  "Liverpool",
-  "Chelsea",
-  "Tottenham",
-  "Arsenal",
-  "Manchester United",
-  "West Ham United",
-  "Leicester City",
-  "Aston Villa",
-  "Newcastle United",
+const equiposElSalvador = [
+  "Alianza FC",
+  "FAS",
+  "Águila",
+  "Santa Tecla FC",
+  "Isidro Metapán",
+  "Luis Ángel Firpo",
+  "Once Deportivo",
+  "Municipal Limeño",
+  "Chalatenango",
+  "Jocoro FC",
+  "Atlético Marte",
+  "El Vencedor",
 ];
 
+// Función para generar la quiniela para la Liga de El Salvador
+// Función para generar la quiniela para la Liga de El Salvador
+function generarQuinielaElSalvador() {
+  const quinielaBody2 = document.getElementById("quinielaBody2");
+  quinielaBody2.innerHTML = "";
 
-function generarQuiniela() {
-  const quinielaBody = document.getElementById("quinielaBody");
-  quinielaBody.innerHTML = "";
+  equiposElSalvador.forEach((equipo, index) => {
+    if (index < equiposElSalvador.length - 1) {
+      const newRow = document.createElement("tr");
 
-  equipos.forEach((equipo, index) => {
-    const newRow = document.createElement("tr");
+      // Crear celda para la imagen y nombre del equipo local
+      const localCell = document.createElement("td");
+      const localImg = document.createElement("img");
+      localImg.src = `../img/${equipo.toLowerCase().replace(/\s/g, '')}.png`;
+      localImg.alt = `Escudo ${equipo}`;
+      localImg.style.height = "30px";
+      localImg.style.width = "30px"; // Hacer la imagen cuadrada
+      localCell.appendChild(localImg);
+      localCell.appendChild(document.createTextNode(equipo)); // Agregar el nombre del equipo
+      newRow.appendChild(localCell);
 
-    // Crear celda para el escudo y nombre del equipo local
-    const localCell = document.createElement("td");
+      // Crear celda para el resultado
+      const resultadoCell = document.createElement("td");
+      const resultadoInput = document.createElement("input");
+      resultadoInput.type = "text";
+      resultadoInput.classList.add("resultadoInput2");
+      resultadoCell.appendChild(resultadoInput);
+      resultadoInput.addEventListener("input", function(event) {
+  
+        const valor = event.target.value.toUpperCase(); // Convertir el valor ingresado a mayúsculas
+        if (valor !== "1" && valor !== "X" && valor !== "2") {
+          alert("¡Solo se permiten los valores 1, X, y 2 en este campo!");
+          event.target.value = ""; // Limpiar el campo si el valor no es válido
+        }
+      });
+      newRow.appendChild(resultadoCell);
 
-    const localContent = document.createElement("div");
-    const localImg = document.createElement("img");
-    localImg.src = `../img/${equipo.toLowerCase().replace(/\s/g, '')}.png`;
-    localImg.alt = `Escudo ${equipo}`;
-    localImg.style.height = "30px";
-    localImg.style.width = "30px"; // Hacer la imagen cuadrada
+      // Crear celda para la imagen y nombre del equipo visitante
+      const visitanteCell = document.createElement("td");
+      const visitanteImg = document.createElement("img");
+      visitanteImg.src = `../img/${equiposElSalvador[index + 1].toLowerCase().replace(/\s/g, '')}.png`;
+      visitanteImg.alt = `Escudo ${equiposElSalvador[index + 1]}`;
+      visitanteImg.style.height = "30px";
+      visitanteImg.style.width = "30px"; // Hacer la imagen cuadrada
+      visitanteCell.appendChild(visitanteImg);
+      visitanteCell.appendChild(document.createTextNode(equiposElSalvador[index + 1])); // Agregar el nombre del equipo
+      newRow.appendChild(visitanteCell);
 
-    localContent.appendChild(localImg);
-    localContent.appendChild(document.createTextNode(equipo)); // Agregar el nombre del equipo
-    localCell.appendChild(localContent);
-    newRow.appendChild(localCell);
-
-    // Crear celda para el resultado
-    const resultadoCell = document.createElement("td");
-    const resultadoInput = document.createElement("input");
-    resultadoInput.type = "text";
-    resultadoInput.classList.add("resultadoInput");
-    resultadoCell.appendChild(resultadoInput);
-    resultadoInput.addEventListener("input", function(event) {
-      alert("¡Solo se permiten los valores 1, X, y 2 en este campo!");
-      const valor = event.target.value.toUpperCase(); // Convertir el valor ingresado a mayúsculas
-      if (valor !== "1" && valor !== "X" && valor !== "2") {
-        event.target.value = ""; // Limpiar el campo si el valor no es válido
-            alert("¡Solo se permiten los valores 1, X, y 2 en este campo!");
-      }
-    });
-
-
-    newRow.appendChild(resultadoCell);
-
-    // Crear celda para el escudo y nombre del equipo visitante
-    const visitanteCell = document.createElement("td");
-    visitanteCell.style.paddingRight = "15px"; // Agregar padding a la derecha
-    const visitanteContent = document.createElement("div");
-    const visitanteImg = document.createElement("img");
-    visitanteImg.src = `../img/${equipos[index + 1].toLowerCase().replace(/\s/g, '')}.png`;
-    visitanteImg.alt = `Escudo ${equipos[index + 1]}`;
-    visitanteImg.style.height = "30px";
-    visitanteImg.style.width = "30px"; // Hacer la imagen cuadrada
-    visitanteContent.appendChild(visitanteImg);
-    visitanteContent.appendChild(document.createTextNode(equipos[index + 1])); // Agregar el nombre del equipo visitante
-    visitanteCell.appendChild(visitanteContent);
-    newRow.appendChild(visitanteCell);
-
-    quinielaBody.appendChild(newRow);
+      quinielaBody2.appendChild(newRow);
+    }
   });
 }
 
 
-// Función para manejar el evento de apostar
-function apostar() {
-  // Incrementar el contador de apuestas
-  let apuestaNumber = parseInt(localStorage.getItem("apuestaNumber") || "0") + 1;
 
-  // Obtener todos los campos de resultado
-  const resultadoInputs = document.querySelectorAll(".resultadoInput");
-
-  // Array para almacenar los datos de la quiniela
+// Función para manejar el evento de apostar para la Liga de El Salvador
+function apostar2() {
+  let apuestaNumber = parseInt(localStorage.getItem("apuestaNumber2") || "0") + 1;
+  const resultadoInputs = document.querySelectorAll(".resultadoInput2");
   const quinielaData = [];
 
-  // Iterar sobre cada campo de resultado
   resultadoInputs.forEach(input => {
     const resultado = input.value;
-    const local = input.parentNode.parentNode.children[0].textContent; // Corregir el índice para obtener el nombre del equipo local
-    const visitante = input.parentNode.parentNode.children[2].textContent; // Corregir el índice para obtener el nombre del equipo visitante
+    const localImgAlt = input.parentNode.parentNode.children[0].querySelector('img').alt.replace('Escudo ', ''); // Obtener el nombre del equipo local
+    const visitanteImgAlt = input.parentNode.parentNode.children[2].querySelector('img').alt.replace('Escudo ', ''); // Obtener el nombre del equipo visitante
 
-    // Agregar los datos a la quinielaData
-    quinielaData.push({ local, visitante, resultado });
+    quinielaData.push({ local: localImgAlt, visitante: visitanteImgAlt, resultado });
   });
 
-  // Guardar la quinielaData en el localStorage con un identificador único
-  localStorage.setItem(`apuesta${apuestaNumber}`, JSON.stringify(quinielaData));
+  localStorage.setItem(`apuesta${apuestaNumber}_2`, JSON.stringify(quinielaData));
+  localStorage.setItem("apuestaNumber2", apuestaNumber.toString());
 
-  // Guardar el número de la apuesta actual en el localStorage
-  localStorage.setItem("apuestaNumber", apuestaNumber.toString());
+  alert(`¡Quiniela apuesta número ${apuestaNumber} para la Liga de El Salvador guardada exitosamente!`);
 
-  // Mostrar un mensaje de éxito
-  alert(`¡Quiniela apuesta número ${apuestaNumber} para Premier guardada exitosamente!`);
-
-  // Limpiar los campos de resultado
   resultadoInputs.forEach(input => {
     input.value = "";
   });
 
-  // Mostrar el array en la consola
   console.log(quinielaData);
 }
 
-// Obtener el botón de apostar
-const apostarButton = document.getElementById("apostarButton");
 
-// Agregar un evento de clic al botón de apostar
-apostarButton.addEventListener("click", apostar);
+const apostarButton2 = document.getElementById("apostarButton2");
+apostarButton2.addEventListener("click", apostar2);
 
-
-
-
-// Función para mostrar las apuestas guardadas en la página
-function mostrarApuestas() {
-  // Ocultar la tabla de generación de quinielas
-  document.getElementById("tablaQuiniela").style.display = "none";
-
-  // Mostrar las apuestas guardadas
-  const apuestasContainer = document.getElementById("apuestasContainer");
+function mostrarApuestas2() {
+  document.getElementById("tablaQuiniela2").style.display = "none";
+  const apuestasContainer = document.getElementById("apuestasContainer2");
   apuestasContainer.innerHTML = "";
+  const apuestaNumber = parseInt(localStorage.getItem("apuestaNumber2") || "0");
 
-  // Obtener el número total de apuestas
-  const apuestaNumber = parseInt(localStorage.getItem("apuestaNumber") || "0");
-
-  // Iterar sobre cada apuesta guardada
   for (let i = 1; i <= apuestaNumber; i++) {
-    // Obtener los datos de la apuesta desde el localStorage
-    const apuestaData = JSON.parse(localStorage.getItem(`apuesta${i}`)) || [];
-
-    // Crear una tabla para mostrar los datos de la apuesta
+    const apuestaData = JSON.parse(localStorage.getItem(`apuesta${i}_2`)) || [];
     const table = document.createElement("table");
     table.classList.add("table", "table-bordered", "table-striped", "mt-3");
 
-    // Crear el encabezado de la tabla
     const thead = document.createElement("thead");
     thead.innerHTML = `
       <tr>
@@ -173,18 +141,17 @@ function mostrarApuestas() {
     `;
     table.appendChild(thead);
 
-    // Crear el cuerpo de la tabla
     const tbody = document.createElement("tbody");
     apuestaData.forEach(item => {
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>
-          <img src="../img/${item.local.toLowerCase().replace(/\s/g, '')}.png" alt="${item.local} escudo" style="height: 30px; width: 30px;">
+          <img src="../img/${item.local.toLowerCase().replace(/\s/g, '')}.png" alt="${item.local}" style="height: 30px; width: 30px;">
           ${item.local}
         </td>
         <td>${item.resultado}</td>
         <td>
-          <img src="../img/${item.visitante.toLowerCase().replace(/\s/g, '')}.png" alt="${item.visitante} escudo" style="height: 30px; width: 30px;">
+          <img src="../img/${item.visitante.toLowerCase().replace(/\s/g, '')}.png" alt="${item.visitante}" style="height: 30px; width: 30px;">
           ${item.visitante}
         </td>
       `;
@@ -192,33 +159,25 @@ function mostrarApuestas() {
     });
     table.appendChild(tbody);
 
-    // Agregar la tabla al contenedor de apuestas
     apuestasContainer.appendChild(table);
   }
 }
 
+const mostrarApuestasButton2 = document.getElementById("mostrarApuestasButton2");
+mostrarApuestasButton2.addEventListener("click", mostrarApuestas2);
 
 
-// Obtener el botón para mostrar las apuestas
-const mostrarApuestasButton = document.getElementById("mostrarApuestasButton");
-
-// Agregar un evento de clic al botón para mostrar las apuestas
-mostrarApuestasButton.addEventListener("click", mostrarApuestas);
-
-// Función para ocultar las apuestas mostradas
-function ocultarApuestas() {
-  const tablaQuiniela = document.getElementById("tablaQuiniela");
-  if (tablaQuiniela.style.display === "none") {
-    tablaQuiniela.style.display = "block";
+function ocultarApuestas2() {
+  const tablaQuiniela2 = document.getElementById("tablaQuiniela2");
+  if (tablaQuiniela2.style.display === "none") {
+    tablaQuiniela2.style.display = "block";
   }
 }
-// Obtener el botón de cerrar quinielas
-const cerrarButton2 = document.getElementById("cerrarButton2");
-cerrarButton2.addEventListener("click", function () {
+
+const cerrarButton = document.getElementById("cerrarButton");
+cerrarButton.addEventListener("click", function () {
   document.getElementById("tablaQuiniela").style.display = "none";
   document.getElementById("apuestasContainer").innerHTML = "";
   document.getElementById("tablaQuiniela2").style.display = "none";
-  document.getElementById("apuestasContainer2").innerHTML = "";
-
+  document.getElementById("apuestas")
 });
-
